@@ -1,0 +1,60 @@
+<!-- <div class="cadastro-container">
+    <div class="overlay"></div>
+
+    <div class="form-wrapper">
+        <h2>Cadastro</h2>
+
+        <select id="tipo" [(ngModel)]="tipoSelecionado">
+            <option value disabled selected>Selecione</option>
+            <option value="alimentos">Alimentos</option>
+            <option value="religiosos">Artigos Religiosos</option>
+            <option value="usuarios">Usuários</option>
+        </select>
+
+
+        <form *ngIf="tipoSelecionado === 'alimentos'" (submit)="confirmar()">
+            <input (input)="setValue('nomeAlimento')"
+                placeholder="Nome do alimento" />
+            <input (input)="setValue('qtd')" placeholder="Quantidade"
+                type="date" />
+            <input (input)="setValue('valorAlimento')"
+                placeholder="Valor unitário"
+                type="number" />
+
+            <div class="botoes">
+                <button type="button" class="voltar-btn"
+                    routerLink="/">Voltar</button>
+                <button type="submit" class="confirmar-btn">Confirmar</button>
+            </div>
+        </form>
+
+        <form *ngIf="tipoSelecionado === 'religiosos'" (submit)="confirmar()">
+            <input (input)="setValue('nomeProduto')"
+                placeholder="Nome do produto" />
+            <input (input)="setValue('descricao')" placeholder="Descrição" />
+            <input (input)="setValue('qtd')" placeholder="Quantidade" />
+            <input (input)="setValue('valorProduto')"
+                placeholder="Valor unitário"
+                type="number" />
+
+            <div class="botoes">
+                <button type="button" class="voltar-btn"
+                    routerLink="/">Voltar</button>
+                <button type="submit" class="confirmar-btn">Confirmar</button>
+            </div>
+        </form>
+
+        <form *ngIf="tipoSelecionado === 'usuarios'" (submit)="confirmar()">
+            <input (input)="setValue('nomeUsuario')"
+                placeholder="Nome do cliente" />
+            <input (input)="setValue('numeroCracha')"
+                placeholder="Numero do crachá" />
+
+            <div class="botoes">
+                <button type="button" class="voltar-btn"
+                    routerLink="/">Voltar</button>
+                <button type="submit" class="confirmar-btn">Confirmar</button>
+            </div>
+        </form>
+    </div>
+</div> -->

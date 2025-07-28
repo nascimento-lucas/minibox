@@ -5,7 +5,7 @@
     <h2>Cadastro</h2>
 
     <select id="tipo" [(ngModel)]="tipoSelecionado">
-      <option value="" disabled selected>Selecione</option>
+      <option value disabled selected>Selecione</option>
       <option value="alimentos">Alimentos</option>
       <option value="religiosos">Artigos Religiosos</option>
       <option value="usuarios">Usuários</option>
@@ -13,9 +13,11 @@
 
     <!-- Formulário: Alimentos -->
     <form *ngIf="tipoSelecionado === 'alimentos'" (submit)="confirmar()">
-      <input placeholder="Nome do alimento" />
-      <input placeholder="Validade" type="date" />
-      <input placeholder="Quantidade" type="number" />
+      <input (input)="setValue('nomeAlimento')"
+        placeholder="Nome do alimento" />
+      <input (input)="setValue('qtd')" placeholder="Quantidade" />
+      <input (input)="setValue('valorAlimento')" placeholder="Valor unitário"
+        type="number" />
 
       <div class="botoes">
         <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
@@ -25,9 +27,13 @@
 
     <!-- Formulário: Artigos Religiosos -->
     <form *ngIf="tipoSelecionado === 'religiosos'" (submit)="confirmar()">
-      <input placeholder="Nome do artigo" />
-      <input placeholder="Descrição" />
-      <input placeholder="Preço" type="number" />
+      <input (input)="setValue('nomeProduto')" placeholder="Nome do produto" />
+      <input type="file" accept="image/*" name="imageUpload" />
+      <input (input)="setValue('descricao')" placeholder="Descrição" />
+      <input (input)="setValue('idProduto')" placeholder="Código" />
+      <input (input)="setValue('qtd')" placeholder="Quantidade" />
+      <input (input)="setValue('valorProduto')" placeholder="Valor unitário"
+        type="number" />
 
       <div class="botoes">
         <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
@@ -37,9 +43,9 @@
 
     <!-- Formulário: Usuários -->
     <form *ngIf="tipoSelecionado === 'usuarios'" (submit)="confirmar()">
-      <input placeholder="Nome completo" />
-      <input placeholder="Email" type="email" />
-      <input placeholder="Telefone" />
+      <input (input)="setValue('nomeUsuario')" placeholder="Nome do cliente" />
+      <input (input)="setValue('numeroCracha')"
+        placeholder="Numero do crachá" />
 
       <div class="botoes">
         <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
