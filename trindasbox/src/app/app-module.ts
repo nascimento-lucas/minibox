@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Cadastro } from './cadastro/cadastro';
 import { Inicio } from './inicio/inicio';
-
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     App,
@@ -15,9 +15,10 @@ import { Inicio } from './inicio/inicio';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
-  providers: [
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
     provideBrowserGlobalErrorListeners()
   ],
   bootstrap: [App]
