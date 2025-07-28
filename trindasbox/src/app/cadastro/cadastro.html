@@ -1,0 +1,50 @@
+<div class="cadastro-container">
+  <div class="overlay"></div>
+
+  <div class="form-wrapper">
+    <h2>Cadastro</h2>
+
+    <select id="tipo" [(ngModel)]="tipoSelecionado">
+      <option value="" disabled selected>Selecione</option>
+      <option value="alimentos">Alimentos</option>
+      <option value="religiosos">Artigos Religiosos</option>
+      <option value="usuarios">Usuários</option>
+    </select>
+
+    <!-- Formulário: Alimentos -->
+    <form *ngIf="tipoSelecionado === 'alimentos'" (submit)="confirmar()">
+      <input placeholder="Nome do alimento" />
+      <input placeholder="Validade" type="date" />
+      <input placeholder="Quantidade" type="number" />
+
+      <div class="botoes">
+        <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
+        <button type="submit" class="confirmar-btn">Confirmar</button>
+      </div>
+    </form>
+
+    <!-- Formulário: Artigos Religiosos -->
+    <form *ngIf="tipoSelecionado === 'religiosos'" (submit)="confirmar()">
+      <input placeholder="Nome do artigo" />
+      <input placeholder="Descrição" />
+      <input placeholder="Preço" type="number" />
+
+      <div class="botoes">
+        <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
+        <button type="submit" class="confirmar-btn">Confirmar</button>
+      </div>
+    </form>
+
+    <!-- Formulário: Usuários -->
+    <form *ngIf="tipoSelecionado === 'usuarios'" (submit)="confirmar()">
+      <input placeholder="Nome completo" />
+      <input placeholder="Email" type="email" />
+      <input placeholder="Telefone" />
+
+      <div class="botoes">
+        <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
+        <button type="submit" class="confirmar-btn">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>
