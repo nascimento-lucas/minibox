@@ -26,6 +26,7 @@
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
+    "@vercel/edge-config": "^1.4.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -44,5 +45,5 @@
     "typescript": "~5.8.2"
   },
   "build": "npm run generate-html && vite build",
- "generate-html": "mkdir -p dist && cp index.html dist/"
+  "generate-html": "mkdir -p dist && cp index.html dist/"
 }
