@@ -4,15 +4,19 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class BackendService {
+  
   apiUrl = 'https://flask-backend-pied.vercel.app';
-
+  
   constructor(private http: HttpClient) {}
 
   // Rota de teste
   getMensagem() {
     return this.http.get(`${this.apiUrl}`);
   }
-
+  
+  listarVendas() {
+    return this.http.get(`${this.apiUrl}/vendas`);
+  }
   // USUÁRIOS
   criarUsuario(usuario: { tipo: string; nome: string; numeroCracha: string; valor: string }) {
     return this.http.post(`${this.apiUrl}/novousuario`, usuario);

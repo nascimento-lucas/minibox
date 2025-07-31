@@ -73,6 +73,18 @@ export class Cadastro {
         console.log(res);
         alert('Cadastro realizado com sucesso!');
       });
+    } else if (this.tipoSelecionado === 'RECARGA') {
+      if (
+        !this.usuario.numeroCracha ||
+        !this.usuario.valor
+      ) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+      this.backendService.adicionarValorAoUsuario(this.usuario.numeroCracha, this.usuario.valor).subscribe((res: any) => {
+        console.log(res);
+        alert('Recarga realizada com sucesso!');
+      });
     }
     this.usuario = { tipo: 'usuario', nome: '', numeroCracha: '', valor: '' };
     this.produto = {

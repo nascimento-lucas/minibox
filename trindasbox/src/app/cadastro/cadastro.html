@@ -7,9 +7,11 @@
     <label for="tipo" class="label-pequena">Tipo de Cadastro</label>
     <select id="tipo" [(ngModel)]="tipoSelecionado">
       <option value disabled selected>Selecione</option>
+      <option value="RECARGA">RECARGA</option>
       <option value="alimentos">Alimentos</option>
       <option value="religiosos">Artigos Religiosos</option>
       <option value="usuarios">Usuários</option>
+
     </select>
 
     <!-- Formulário: Alimentos -->
@@ -56,6 +58,19 @@
     </form>
 
     <!-- Formulário: Usuários -->
+    <form *ngIf="tipoSelecionado === 'RECARGA'" (submit)="confirmar()">
+      <label class="label-pequena">Número do crachá</label>
+      <input [(ngModel)]="usuario.numeroCracha" type="number" placeholder="Número do crachá" />
+
+      <label class="label-pequena">Adicionar valor</label>
+      <input [(ngModel)]="usuario.valor" type="number" placeholder="Adicionar valor" />
+
+      <div class="botoes">
+        <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
+        <button type="submit" class="confirmar-btn">Confirmar</button>
+      </div>
+    </form>
+
     <form *ngIf="tipoSelecionado === 'usuarios'" (submit)="confirmar()">
       <label class="label-pequena">Nome do cliente</label>
       <input [(ngModel)]="usuario.nome" placeholder="Nome do cliente" />

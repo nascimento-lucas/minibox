@@ -12,6 +12,8 @@
       <option value="usuarios">Usuários com divida</option>
       <option value="produtos">Todos os Produtos Religiosos</option>
       <option value="alimentos">Todos os Alimentos</option>
+      <option value="vendas">Todas as vendas</option>
+
     </select>
 
     <!-- Consulta por crachá -->
@@ -33,35 +35,40 @@
     </div>
 
     <div class="resultado" *ngIf="resultado">
-      <!-- Se for um array de objetos -->
-      <table *ngIf="isArray(resultado) && resultado.length > 0">
-        <thead>
-          <tr>
-            <th *ngFor="let key of getKeys(resultado[0])">{{ key }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of resultado">
-            <td *ngFor="let key of getKeys(item)">{{ item[key] }}</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- Se for um array de objetos -->
+  <div class="tabela-wrapper" *ngIf="isArray(resultado) && resultado.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let key of getKeys(resultado[0])">{{ key }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of resultado">
+          <td *ngFor="let key of getKeys(item)">{{ item[key] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-      <!-- Se for objeto único -->
-      <table *ngIf="!isArray(resultado) && isObject(resultado)">
-        <tbody>
-          <tr *ngFor="let key of getKeys(resultado)">
-            <th>{{ key }}</th>
-            <td>{{ resultado[key] }}</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- Se for objeto único -->
+  <div class="tabela-wrapper" *ngIf="!isArray(resultado) && isObject(resultado)">
+    <table>
+      <tbody>
+        <tr *ngFor="let key of getKeys(resultado)">
+          <th>{{ key }}</th>
+          <td>{{ resultado[key] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-      <!-- Se não for objeto nem array (ex: string, null) -->
-      <div *ngIf="!isObject(resultado) && !isArray(resultado)">
-        <pre>{{ resultado }}</pre>
-      </div>
-    </div>
+  <!-- Se não for objeto nem array (ex: string, null) -->
+  <div *ngIf="!isObject(resultado) && !isArray(resultado)">
+    <pre>{{ resultado }}</pre>
+  </div>
+</div>
+
 
     <div class="botoes">
       <button routerLink="/" class="voltar-btn">Voltar</button>
@@ -75,7 +82,7 @@
         *ngIf="tipoConsultaSelecionado === 'produtoPorId'"
         (click)="buscarProdutoPorId()">Buscar</button>
       <button class="confirmar-btn" type="submit"
-        *ngIf="tipoConsultaSelecionado === 'usuarios' || tipoConsultaSelecionado === 'produtos' || tipoConsultaSelecionado === 'alimentos'"
+        *ngIf="tipoConsultaSelecionado === 'usuarios' || tipoConsultaSelecionado === 'produtos' || tipoConsultaSelecionado === 'alimentos' || tipoConsultaSelecionado === 'vendas'"
         (click)="consultarTodos()">Buscar Todos</button>
     </div>
 

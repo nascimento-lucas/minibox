@@ -69,27 +69,27 @@ export class Venda {
           numeroCracha: item.numeroCracha
         }));
       }
-    } catch (e) {
+    } catch (e: any) {
       console.error(`Erro ao vender ${item.tipo}:`, e);
-      erros.push(item.nome);
-      if (erros.length > 0) {
-    this.mensagem = `Alguns itens falharam`;
-  } else {
-    this.mensagem = 'Venda realizada com sucesso!';
-  }
+      erros.push(`Erro ao vender ${item.tipo}:`, e.message || 'Erro desconhecido');
     }
   });
 
   await Promise.all(promessas);
 
-  
-    this.carrinho = [];
-    this.itemVenda.nome = '';
-    this.itemVenda.id = '';
-    this.itemVenda.quantidade = 1;
-    this.itemVenda.numeroCracha = '';
-
+  if (erros.length > 0) {
+    this.mensagem = `Falha ao vender os itens!`;
+  } else {
+    this.mensagem = 'Venda realizada com sucesso!';
   }
+
+  this.carrinho = [];
+  this.itemVenda.nome = '';
+  this.itemVenda.id = '';
+  this.itemVenda.quantidade = 1;
+  this.itemVenda.numeroCracha = '';
+}
+
   getTotalItems() {
     return this.carrinho.reduce((total, item) => total + item.quantidade, 0);
   }

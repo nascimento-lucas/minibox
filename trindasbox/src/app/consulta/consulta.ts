@@ -36,6 +36,12 @@ export class Consulta {
           console.log(res);
         });
         break;
+      case 'vendas':
+        this.backend.listarVendas().subscribe((res) => {
+          this.resultado = res;
+          console.log(res);
+        });
+        break;
     }
   }
 
