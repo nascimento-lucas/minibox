@@ -4,6 +4,7 @@
   <div class="form-wrapper">
     <h2>Cadastro</h2>
 
+    <label for="tipo" class="label-pequena">Tipo de Cadastro</label>
     <select id="tipo" [(ngModel)]="tipoSelecionado">
       <option value disabled selected>Selecione</option>
       <option value="alimentos">Alimentos</option>
@@ -13,11 +14,17 @@
 
     <!-- Formulário: Alimentos -->
     <form *ngIf="tipoSelecionado === 'alimentos'" (submit)="confirmar()">
-      <input (input)="setValue('nomeAlimento')"
-        placeholder="Nome do alimento" />
-      <input (input)="setValue('qtd')" placeholder="Quantidade" />
-      <input (input)="setValue('valorAlimento')" placeholder="Valor unitário"
-        type="number" />
+      <label class="label-pequena">Nome do alimento</label>
+      <input [(ngModel)]="alimento.nome" placeholder="Nome do alimento" />
+
+      <label class="label-pequena">Código</label>
+      <input [(ngModel)]="alimento.id" placeholder="Codigo" />
+
+      <label class="label-pequena">Quantidade</label>
+      <input [(ngModel)]="alimento.quantidade" placeholder="Quantidade" />
+
+      <label class="label-pequena">Valor unitário</label>
+      <input [(ngModel)]="alimento.valor" placeholder="Valor unitário" type="number" />
 
       <div class="botoes">
         <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
@@ -27,13 +34,20 @@
 
     <!-- Formulário: Artigos Religiosos -->
     <form *ngIf="tipoSelecionado === 'religiosos'" (submit)="confirmar()">
-      <input (input)="setValue('nomeProduto')" placeholder="Nome do produto" />
-      <input type="file" accept="image/*" name="imageUpload" />
-      <input (input)="setValue('descricao')" placeholder="Descrição" />
-      <input (input)="setValue('idProduto')" placeholder="Código" />
-      <input (input)="setValue('qtd')" placeholder="Quantidade" />
-      <input (input)="setValue('valorProduto')" placeholder="Valor unitário"
-        type="number" />
+      <label class="label-pequena">Nome do produto</label>
+      <input [(ngModel)]="produto.nome" placeholder="Nome do produto" />
+
+      <label class="label-pequena">Descrição</label>
+      <input [(ngModel)]="produto.descricao" placeholder="Descrição" />
+
+      <label class="label-pequena">Código</label>
+      <input [(ngModel)]="produto.id" placeholder="Código" />
+
+      <label class="label-pequena">Quantidade</label>
+      <input [(ngModel)]="produto.quantidade" placeholder="Quantidade" />
+
+      <label class="label-pequena">Valor unitário</label>
+      <input [(ngModel)]="produto.valor" placeholder="Valor unitário" type="number" />
 
       <div class="botoes">
         <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
@@ -43,14 +57,23 @@
 
     <!-- Formulário: Usuários -->
     <form *ngIf="tipoSelecionado === 'usuarios'" (submit)="confirmar()">
-      <input (input)="setValue('nomeUsuario')" placeholder="Nome do cliente" />
-      <input (input)="setValue('numeroCracha')"
-        placeholder="Numero do crachá" />
+      <label class="label-pequena">Nome do cliente</label>
+      <input [(ngModel)]="usuario.nome" placeholder="Nome do cliente" />
+
+      <label class="label-pequena">Número do crachá</label>
+      <input [(ngModel)]="usuario.numeroCracha" type="number" placeholder="Número do crachá" />
+
+      <label class="label-pequena">Adicionar valor</label>
+      <input [(ngModel)]="usuario.valor" type="number" placeholder="Adicionar valor" />
 
       <div class="botoes">
         <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
         <button type="submit" class="confirmar-btn">Confirmar</button>
       </div>
     </form>
+
+    <div *ngIf="tipoSelecionado === ''" class="botoes">
+      <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
+    </div>
   </div>
 </div>

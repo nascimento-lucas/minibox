@@ -1,60 +1,47 @@
-<!-- <div class="cadastro-container">
-    <div class="overlay"></div>
+<div class="consultas-container">
+  <div class="overlay"></div>
 
-    <div class="form-wrapper">
-        <h2>Cadastro</h2>
+  <div class="form-wrapper">
+    <h2>Consultar</h2>
 
-        <select id="tipo" [(ngModel)]="tipoSelecionado">
-            <option value disabled selected>Selecione</option>
-            <option value="alimentos">Alimentos</option>
-            <option value="religiosos">Artigos Religiosos</option>
-            <option value="usuarios">Usuários</option>
-        </select>
+    <select id="tipoConsulta" [(ngModel)]="tipoConsultaSelecionado">
+      <option value disabled selected>Selecione</option>
+      <option value="alimentoPorId">Alimento por ID</option>
+      <option value="produtoPorId">Produto por ID</option>
+      <option value="usuarioPorCracha">Usuário por Crachá</option>
+      <option value="usuarios">Usuários com divida</option>
+      <option value="produtos">Todos os Produtos Religiosos</option>
+      <option value="alimentos">Todos os Alimentos</option>
+    </select>
 
-
-        <form *ngIf="tipoSelecionado === 'alimentos'" (submit)="confirmar()">
-            <input (input)="setValue('nomeAlimento')"
-                placeholder="Nome do alimento" />
-            <input (input)="setValue('qtd')" placeholder="Quantidade"
-                type="date" />
-            <input (input)="setValue('valorAlimento')"
-                placeholder="Valor unitário"
-                type="number" />
-
-            <div class="botoes">
-                <button type="button" class="voltar-btn"
-                    routerLink="/">Voltar</button>
-                <button type="submit" class="confirmar-btn">Confirmar</button>
-            </div>
-        </form>
-
-        <form *ngIf="tipoSelecionado === 'religiosos'" (submit)="confirmar()">
-            <input (input)="setValue('nomeProduto')"
-                placeholder="Nome do produto" />
-            <input (input)="setValue('descricao')" placeholder="Descrição" />
-            <input (input)="setValue('qtd')" placeholder="Quantidade" />
-            <input (input)="setValue('valorProduto')"
-                placeholder="Valor unitário"
-                type="number" />
-
-            <div class="botoes">
-                <button type="button" class="voltar-btn"
-                    routerLink="/">Voltar</button>
-                <button type="submit" class="confirmar-btn">Confirmar</button>
-            </div>
-        </form>
-
-        <form *ngIf="tipoSelecionado === 'usuarios'" (submit)="confirmar()">
-            <input (input)="setValue('nomeUsuario')"
-                placeholder="Nome do cliente" />
-            <input (input)="setValue('numeroCracha')"
-                placeholder="Numero do crachá" />
-
-            <div class="botoes">
-                <button type="button" class="voltar-btn"
-                    routerLink="/">Voltar</button>
-                <button type="submit" class="confirmar-btn">Confirmar</button>
-            </div>
-        </form>
+    <!-- Consulta por crachá -->
+    <div *ngIf="tipoConsultaSelecionado === 'usuarioPorCracha'">
+      <input style='width: 100%;' [(ngModel)]="numeroCracha" type="number" placeholder="Número do Crachá" />
     </div>
-</div> -->
+
+    <!-- Consulta por ID de alimento -->
+    <div *ngIf="tipoConsultaSelecionado === 'alimentoPorId'">
+      <input style='width: 100%;' [(ngModel)]="idAlimento" type="text" placeholder="ID do Alimento" />
+    </div>
+
+    <!-- Consulta por ID de produto -->
+    <div *ngIf="tipoConsultaSelecionado === 'produtoPorId'">
+      <input style='width: 100%;' [(ngModel)]="idProduto" type="text" placeholder="ID do produto" />
+    </div>
+
+    <!-- Exibição de resultados -->
+    <div class="resultado" *ngIf="resultado">
+      <pre>{{ resultado | json }}</pre>
+    </div>
+
+    <div class="botoes">
+      <button routerLink="/" class="voltar-btn">Voltar</button>
+      <button class="confirmar-btn" type="submit" *ngIf="tipoConsultaSelecionado === 'usuarioPorCracha'" (click)="buscarUsuarioPorCracha()">Buscar</button>
+      <button class="confirmar-btn" type="submit" *ngIf="tipoConsultaSelecionado === 'alimentoPorId'" (click)="buscarAlimentoPorId()">Buscar</button>
+      <button class="confirmar-btn" type="submit" *ngIf="tipoConsultaSelecionado === 'produtoPorId'" (click)="buscarProdutoPorId()">Buscar</button>
+      <button class="confirmar-btn" type="submit" *ngIf="tipoConsultaSelecionado === 'usuarios' || tipoConsultaSelecionado === 'produtos' || tipoConsultaSelecionado === 'alimentos'" (click)="consultarTodos()">Buscar Todos</button>
+    </div>
+
+   
+  </div>
+</div>

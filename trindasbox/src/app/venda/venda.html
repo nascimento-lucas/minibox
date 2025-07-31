@@ -1,1 +1,54 @@
-<p>venda works!</p>
+<div class="venda-container">
+  <div class="overlay"></div>
+
+  <div class="form-wrapper">
+    <h2>Nova Venda</h2>
+
+    <label for="tipoVenda" class="label-pequena">Tipo de Venda</label>
+    <select id="tipoVenda" [(ngModel)]="tipoVendaSelecionado">
+      <option value="" disabled selected>Selecione o tipo</option>
+      <option value="produto">Produto</option>
+      <option value="alimento">Alimento</option>
+    </select>
+
+    <div *ngIf="tipoVendaSelecionado === ''" class="botoes">
+      <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
+    </div>
+
+    <form *ngIf="tipoVendaSelecionado" (submit)="adicionarAoCarrinho(); $event.preventDefault()">
+
+      <div *ngIf="tipoVendaSelecionado === 'produto' || tipoVendaSelecionado === 'alimento'">
+        <label for="id" class="label-pequena">Codigo</label>
+        <input id="id" style='width: 100%;' [(ngModel)]="itemVenda.id" name="id" placeholder="Codigo" required />
+      </div>
+
+      <label for="quantidade" class="label-pequena">Quantidade</label>
+      <input id="quantidade" style='width: 100%;' [(ngModel)]="itemVenda.quantidade" name="quantidade" type="number" placeholder="Quantidade" required />
+
+      <label for="cracha" class="label-pequena">Número do Crachá</label>
+      <input id="cracha" style='width: 100%;' [(ngModel)]="itemVenda.numeroCracha" name="cracha" placeholder="Número do Crachá" required />
+
+      <div class="botoes">
+        <button type="button" class="voltar-btn" routerLink="/">Voltar</button>
+        <button type="submit" class="confirmar-btn">Adicionar ao Carrinho</button>
+      </div>
+    </form>
+
+    <div class="carrinho" *ngIf="carrinho.length > 0">
+      <h3>Itens no Carrinho</h3>
+      <ul>
+        <li *ngFor="let item of carrinho">
+          {{ item.tipo }} - {{ item.id }} ({{ item.quantidade }}) - Crachá: {{ item.numeroCracha }}
+        </li>
+      </ul>
+      <p>Total de Itens: {{ getTotalItems() }}</p>
+
+      <div class="botoes">
+        <button type="button" class="voltar-btn" (click)="descartarCarrinho()">Descartar</button>
+        <button type="button" class="confirmar-btn" (click)="finalizarVenda()">Finalizar Venda</button>
+      </div>
+    </div>
+
+    <p *ngIf="mensagem">{{ mensagem }}</p>
+  </div>
+</div>

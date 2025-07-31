@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Cadastro } from './cadastro/cadastro';
 import { Inicio } from './inicio/inicio';
+
 import {
   CommonModule,
   HashLocationStrategy,
@@ -12,9 +13,10 @@ import {
 } from '@angular/common';
 import { Consulta } from './consulta/consulta';
 import { Venda } from './venda/venda';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [App, Cadastro, Inicio, Consulta, Venda],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, CommonModule],
+  imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, CommonModule],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     provideBrowserGlobalErrorListeners(),

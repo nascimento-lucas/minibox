@@ -1,0 +1,218 @@
+.consultas-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: url('../../../assets/background.png') center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 0;
+}
+
+.form-wrapper {
+  position: relative;
+  z-index: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+label, input {
+  display: flex;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.confirmar-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.confirmar-btn:hover {
+  background-color: #218838;
+}
+
+.voltar-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.voltar-btn:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 600px) {
+  .botoes {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .confirmar-btn,
+  .voltar-btn {
+    width: 100%;
+  }
+}
+
+.cadastro-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: url('../../../assets/background.png') center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 0;
+}
+
+.form-wrapper {
+  position: relative;
+  z-index: 1;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+label, input {
+  display: flex;
+  padding: 0.3rem;
+  font-size: 1rem;
+}
+
+select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  display: flex;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.confirmar-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.confirmar-btn:hover {
+  background-color: #218838;
+}
+
+.voltar-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.voltar-btn:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 600px) {
+  .botoes {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .confirmar-btn,
+  .voltar-btn {
+    width: 100%;
+  }
+}
+
+.label-pequena {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 14px;
+  display: block;
+  color: #444;
+}
+
