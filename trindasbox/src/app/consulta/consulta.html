@@ -16,32 +16,68 @@
 
     <!-- Consulta por crachá -->
     <div *ngIf="tipoConsultaSelecionado === 'usuarioPorCracha'">
-      <input style='width: 100%;' [(ngModel)]="numeroCracha" type="number" placeholder="Número do Crachá" />
+      <input style='width: 100%;' [(ngModel)]="numeroCracha" type="number"
+        placeholder="Número do Crachá" />
     </div>
 
     <!-- Consulta por ID de alimento -->
     <div *ngIf="tipoConsultaSelecionado === 'alimentoPorId'">
-      <input style='width: 100%;' [(ngModel)]="idAlimento" type="text" placeholder="ID do Alimento" />
+      <input style='width: 100%;' [(ngModel)]="idAlimento" type="text"
+        placeholder="ID do Alimento" />
     </div>
 
     <!-- Consulta por ID de produto -->
     <div *ngIf="tipoConsultaSelecionado === 'produtoPorId'">
-      <input style='width: 100%;' [(ngModel)]="idProduto" type="text" placeholder="ID do produto" />
+      <input style='width: 100%;' [(ngModel)]="idProduto" type="text"
+        placeholder="ID do produto" />
     </div>
 
-    <!-- Exibição de resultados -->
     <div class="resultado" *ngIf="resultado">
-      <pre>{{ resultado | json }}</pre>
+      <!-- Se for um array de objetos -->
+      <table *ngIf="isArray(resultado) && resultado.length > 0">
+        <thead>
+          <tr>
+            <th *ngFor="let key of getKeys(resultado[0])">{{ key }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of resultado">
+            <td *ngFor="let key of getKeys(item)">{{ item[key] }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Se for objeto único -->
+      <table *ngIf="!isArray(resultado) && isObject(resultado)">
+        <tbody>
+          <tr *ngFor="let key of getKeys(resultado)">
+            <th>{{ key }}</th>
+            <td>{{ resultado[key] }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Se não for objeto nem array (ex: string, null) -->
+      <div *ngIf="!isObject(resultado) && !isArray(resultado)">
+        <pre>{{ resultado }}</pre>
+      </div>
     </div>
 
     <div class="botoes">
       <button routerLink="/" class="voltar-btn">Voltar</button>
-      <button class="confirmar-btn" type="submit" *ngIf="tipoConsultaSelecionado === 'usuarioPorCracha'" (click)="buscarUsuarioPorCracha()">Buscar</button>
-      <button class="confirmar-btn" type="submit" *ngIf="tipoConsultaSelecionado === 'alimentoPorId'" (click)="buscarAlimentoPorId()">Buscar</button>
-      <button class="confirmar-btn" type="submit" *ngIf="tipoConsultaSelecionado === 'produtoPorId'" (click)="buscarProdutoPorId()">Buscar</button>
-      <button class="confirmar-btn" type="submit" *ngIf="tipoConsultaSelecionado === 'usuarios' || tipoConsultaSelecionado === 'produtos' || tipoConsultaSelecionado === 'alimentos'" (click)="consultarTodos()">Buscar Todos</button>
+      <button class="confirmar-btn" type="submit"
+        *ngIf="tipoConsultaSelecionado === 'usuarioPorCracha'"
+        (click)="buscarUsuarioPorCracha()">Buscar</button>
+      <button class="confirmar-btn" type="submit"
+        *ngIf="tipoConsultaSelecionado === 'alimentoPorId'"
+        (click)="buscarAlimentoPorId()">Buscar</button>
+      <button class="confirmar-btn" type="submit"
+        *ngIf="tipoConsultaSelecionado === 'produtoPorId'"
+        (click)="buscarProdutoPorId()">Buscar</button>
+      <button class="confirmar-btn" type="submit"
+        *ngIf="tipoConsultaSelecionado === 'usuarios' || tipoConsultaSelecionado === 'produtos' || tipoConsultaSelecionado === 'alimentos'"
+        (click)="consultarTodos()">Buscar Todos</button>
     </div>
 
-   
   </div>
 </div>
